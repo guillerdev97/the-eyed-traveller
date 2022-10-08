@@ -16,11 +16,11 @@ return new class extends Migration
             $table->integer('favs_quantity');
             $table->string('location');
 
-          /*   $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
 
             $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id')->on('cities'); */
+            $table->foreign('city_id')->references('id')->on('cities');
 
             $table->timestamps();
         });
