@@ -23,4 +23,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/image/listall', [ImageController::class, 'listAllImages']); // done
     Route::get('/image/listuser', [ImageController::class, 'listUserImages']); // done
     Route::delete('/image/delete/{id}', [ImageController::class, 'delete']); // done
+    Route::patch('/image/update/{id}', [ImageController::class, 'update']); // done
 });

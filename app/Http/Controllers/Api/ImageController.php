@@ -9,6 +9,32 @@ use Illuminate\Support\Facades\Auth;
 
 class ImageController extends Controller
 {
+    // list all images function
+    public function listAllImages()
+    {
+        $images = Image::all();
+
+        return response()->json([
+            'status' => 1,
+            'msg' => 'List of images',
+            'data' => $images
+        ], 200);
+    }
+
+    // list user images function
+    public function listUserImages()
+    {
+        $user = auth()->user();
+
+        $images = $user->images;
+
+        return response()->json([
+            'status' => 1,
+            'msg' => 'List of images',
+            'data' => $images
+        ], 200);
+    }
+
     // create function
     public function create(Request $request)
     {
@@ -41,30 +67,7 @@ class ImageController extends Controller
         ], 200);
     }
 
-    public function listAllImages()
-    {
-        $images = Image::all();
-
-        return response()->json([
-            'status' => 1,
-            'msg' => 'List of images',
-            'data' => $images
-        ], 200);
-    }
-
-    public function listUserImages()
-    {
-        $user = auth()->user();
-
-        $images = $user->images;
-
-        return response()->json([
-            'status' => 1,
-            'msg' => 'List of images',
-            'data' => $images
-        ], 200);
-    }
-
+    // delete function
     public function delete($id)
     {
         $user = auth()->user();
@@ -77,6 +80,30 @@ class ImageController extends Controller
         return response()->json([
             'status' => 1,
             'msg' => 'Image deleted',
+            'data' => $image
+        ], 200);
+    }
+
+    // update function
+    public function update(Request $request, $id)
+    {
+        $user = auth()->user();
+
+        $image = $user->images
+            ->find($id);
+
+        $image->image = $request->image;
+        $image->title = $request->title;
+        $image->location = $request->location;
+        $image->category_id = $request->category_id;
+        $image->city_id = $request->city_id;
+
+        $image->update();
+
+
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Image updated',
             'data' => $image
         ], 200);
     }
