@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // user - register function
+    // register function
     public function register(Request $request)
     {
         $request->validate([
@@ -33,7 +33,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    // user - log in function
+    // login function
     public function login(Request $request)
     {
         $request->validate([
@@ -67,7 +67,7 @@ class UserController extends Controller
         ], 404);
     }
 
-    // user - log out function
+    // logout function
     public function logout()
     {
         $user = auth()->user();
