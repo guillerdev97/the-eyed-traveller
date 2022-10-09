@@ -29,5 +29,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 // favorites http requests
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/image/favorite/list', [FavoriteController::class, 'list']); // done
     Route::get('/image/favorite/add/{id}', [FavoriteController::class, 'add']); // done
+    Route::get('/image/favorite/delete/{id}', [FavoriteController::class, 'delete']); // done
 });
