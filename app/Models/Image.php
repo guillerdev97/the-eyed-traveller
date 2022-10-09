@@ -19,8 +19,13 @@ class Image extends Model
         'city_id',
     ];
 
-    public function user() {
-        return $this->belongsTo(User::class, 'category_id');
+    public function user()
+    {
+        return $this->belongsToMany(Image::class);
+    }
+
+    public function authUser() {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function category() {

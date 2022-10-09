@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\FavoriteController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -24,4 +25,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/image/listuser', [ImageController::class, 'listUserImages']); // done
     Route::delete('/image/delete/{id}', [ImageController::class, 'delete']); // done
     Route::patch('/image/update/{id}', [ImageController::class, 'update']); // done
+});
+
+// favorites http requests
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/image/favorite/add/{id}', [FavoriteController::class, 'add']); // done
 });

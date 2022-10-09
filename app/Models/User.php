@@ -27,6 +27,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function image()
+    {
+        return $this->belongsToMany(Image::class);
+    }
+
     public function images() {
         return $this->hasMany(Image::class);
     }
