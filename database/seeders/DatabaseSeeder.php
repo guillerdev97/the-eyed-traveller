@@ -111,6 +111,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // images factory
-        Image::factory(50)->create();
+        Image::factory(8)->create();
     }
 }

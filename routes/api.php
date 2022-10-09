@@ -10,14 +10,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // authentication http requests
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register']); // done
+Route::post('/login', [UserController::class, 'login']); // done
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/logout', [UserController::class, 'logout']);
+    Route::get('/logout', [UserController::class, 'logout']); // done
 });
 
 // images http requests
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/image/create', [ImageController::class, 'create']);
+    Route::post('/image/create', [ImageController::class, 'create']); // done
+    Route::get('/image/listall', [ImageController::class, 'listAllImages']); // done
+    Route::get('/image/listuser', [ImageController::class, 'listUserImages']); // done
+    Route::delete('/image/delete/{id}', [ImageController::class, 'delete']); // done
 });

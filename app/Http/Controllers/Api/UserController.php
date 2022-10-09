@@ -28,7 +28,7 @@ class UserController extends Controller
 
         return response()->json([
             'status' => 1,
-            'msg' => 'Student created',
+            'msg' => 'User created',
             'data' =>  $newUser
         ], 200);
     }
