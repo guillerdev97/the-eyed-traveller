@@ -9,7 +9,7 @@ The philosophy of the app is to offer users a quick overview of sites they might
 
 ## Views and Design
 
-[Click here to see the application views and design]
+[Click here to see the application views and design](https://docs.google.com/document/d/1UDq8bJ4Uqii_thj4N3PO7T0fsqef16rsvZYvWxhjsqk/edit?usp=sharing)
 
 ## Technical test developed for Factoría F5
 
