@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    // list all images (filter frontend)
+    // list all images 
     public function listAllImages()
     {
         $images = Image::orderBy('favs_quantity', 'DESC')
