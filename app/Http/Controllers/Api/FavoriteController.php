@@ -28,6 +28,18 @@ class FavoriteController extends Controller
 
         $user = User::find(Auth::id()); 
 
+        $images = $user->images;
+
+        foreach($images as $check) {
+            if($image->id === $check->id) {
+                return response()->json([
+                    'status' => 1,
+                    'msg' => 'Repeat',
+                    'data' => $image,
+                ], 200);
+            }
+        }
+
         $user->image()->attach($id);
 
         return response()->json([
@@ -37,6 +49,7 @@ class FavoriteController extends Controller
         ], 200);
     }
 
+    // delete fav image
     public function delete($id)
     {
         $image = Image::find($id);
@@ -51,16 +64,4 @@ class FavoriteController extends Controller
             'data' => $image
         ], 200);
     }
-
-    public function favsQuantity($id) {
-        $favs_quantity = Image::getTotalUsersOfImage($id);
-
-        return response()->json([
-            'status' => 1,
-            'msg' => 'Favorite image deleted',
-            'data' => $favs_quantity
-        ], 200);
-    }
-
-   
 }

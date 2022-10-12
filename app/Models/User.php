@@ -35,16 +35,4 @@ class User extends Authenticatable
     public function images() {
         return $this->hasMany(Image::class);
     }
-
-    static function getImagesOfUser() {
-        $imagesOfUser = [];
-
-        if (Auth::user()) {
-            $user = Auth::user();
-
-            $imagesOfUser = $user->image;
-        }
-
-        return $imagesOfUser;
-    }
 }

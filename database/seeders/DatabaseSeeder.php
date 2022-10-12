@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use App\Models\City;
-use App\Models\Community;
 use App\Models\Image;
 use App\Models\User;
 use Illuminate\Database\Seeder;

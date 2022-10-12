@@ -13,12 +13,4 @@ class City extends Model
         'city',
         'community_id',
     ];
-
-    public function community() {
-        return $this->belongsTo(Community::class, 'community_id');
-    }
-
-    public function images() {
-        return $this->hasMany(Image::class);
-    }
 }

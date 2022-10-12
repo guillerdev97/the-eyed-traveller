@@ -11,30 +11,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // authentication http requests
-Route::post('/register', [UserController::class, 'register']); // done
-Route::post('/login', [UserController::class, 'login']); // done
+Route::post('/register', [UserController::class, 'register']); 
+Route::post('/login', [UserController::class, 'login']); 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::delete('/user/delete/', [UserController::class, 'delete']); // done
-    Route::patch('/user/update/{id}', [UserController::class, 'update']); // done
-    Route::get('/user/profile', [UserController::class, 'profile']); // done
-    Route::get('/logout', [UserController::class, 'logout']); // done
+    Route::delete('/user/delete/', [UserController::class, 'delete']); 
+    Route::patch('/user/update/{id}', [UserController::class, 'update']); 
+    Route::get('/user/profile', [UserController::class, 'profile']); 
+    Route::get('/logout', [UserController::class, 'logout']); 
 });
 
 // images http requests
-Route::get('/image/list', [ImageController::class, 'listAllImages']); // done
+Route::get('/image/list', [ImageController::class, 'listAllImages']); 
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/image/create', [ImageController::class, 'create']); // done
- 
-    Route::get('/image/listuser', [ImageController::class, 'listUserImages']); // done
-    Route::delete('/image/delete/{id}', [ImageController::class, 'delete']); // done
-    Route::patch('/image/update/{id}', [ImageController::class, 'update']); // done
+    Route::post('/image/create', [ImageController::class, 'create']); 
+    Route::get('/image/listmy', [ImageController::class, 'listMyImages']); 
+    Route::get('/image/listother', [ImageController::class, 'listFavImages']); 
+    Route::delete('/image/delete/{id}', [ImageController::class, 'delete']); 
+    Route::patch('/image/update/{id}', [ImageController::class, 'update']); 
 });
 
 // favorites http requests
-Route::get('/image/favorite/trending', [FavoriteController::class, 'trendingImages']); // done
+Route::get('/image/favorite/trending', [FavoriteController::class, 'trendingImages']); 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/image/favorite/add/{id}', [FavoriteController::class, 'add']); // done
-    Route::get('/image/favorite/delete/{id}', [FavoriteController::class, 'delete']); // done
-    Route::get('/image/favorite/quantity/{id}', [FavoriteController::class, 'favsQuantity']); // done
+    Route::get('/image/favorite/add/{id}', [FavoriteController::class, 'add']); 
+    Route::delete('/image/favorite/delete/{id}', [FavoriteController::class, 'delete']); 
 });

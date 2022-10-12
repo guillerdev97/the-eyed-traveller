@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Image;
 use Illuminate\Http\Request;
 
@@ -22,19 +21,30 @@ class ImageController extends Controller
         ], 200);
     }
 
-    // list user images (duplicate values no)
-    public function listUserImages()
+    // list user images 
+    public function listMyImages()
     {
         $user = auth()->user();
 
         $myImages = $user->images;
+
+        return response()->json([
+            'status' => 1,
+            'msg' => 'List of user images',
+            'myImages' => $myImages,
+        ], 200);
+    }
+
+    // list fav images
+    public function listFavImages()
+    {
+        $user = auth()->user();
 
         $userImages = $user->image;
 
         return response()->json([
             'status' => 1,
             'msg' => 'List of user images',
-            'myImages' => $myImages,
             'userImages' => $userImages,
         ], 200);
     }
@@ -49,7 +59,7 @@ class ImageController extends Controller
             'title' => 'required',
             'location' => 'required',
             'category_id' => 'required|integer',
-            'city_id' => 'required|integer'
+            'city' => 'required'
         ]);
 
         $newImage = new Image();
@@ -60,7 +70,7 @@ class ImageController extends Controller
         $newImage->location = $request->location;
         $newImage->user_id = $user->id;
         $newImage->category_id = $request->category_id;
-        $newImage->city_id = $request->city_id;
+        $newImage->city = $request->city;
 
         $newImage->save();
 
@@ -100,7 +110,7 @@ class ImageController extends Controller
         $image->title = $request->title;
         $image->location = $request->location;
         $image->category_id = $request->category_id;
-        $image->city_id = $request->city_id;
+        $image->city = $request->city;
 
         $image->update();
 

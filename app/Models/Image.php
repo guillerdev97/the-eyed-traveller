@@ -35,15 +35,4 @@ class Image extends Model
     public function city() {
         return $this->belongsTo(City::class, 'city_id');
     }
-
-    static function getTotalUsersOfImage($id) {
-        $image = Image::all()
-            ->find($id);
-
-        $favs_quantity = $image->user;
-        
-        return $favs_quantity;
-    }
-
-   
 }
