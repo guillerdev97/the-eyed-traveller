@@ -36,6 +36,69 @@ Good software development practices:
 You can use any technology, framework and architecture but
 we hope you remember what is important (quality is better than quantity).
 
+## Run Locally
+
+### Backend
+
+Clone the project
+```bash
+  git clone https://github.com/guillerdev97/the-eyed-traveller-back.git
+```
+Go to the project directory
+```bash
+  cd the-eyed-traveller-back
+```
+Install dependencies
+```bash
+  composer update
+  npm install
+```
+Start the server
+```bash
+  run Apache and MySQL server in XAMPP
+  php artisan serve
+  npm run dev
+```
+
+Import the database of the project the_eyed_traveller.sql into phpMyAdmin.
+Name of the database: the_eyed_traveller.
+Execute migration: "php artisant migrate".
+
+### Frontend
+
+Clone the project
+```bash
+  git clone https://github.com/guillerdev97/the-eyed-traveller-front.git
+```
+Go to the project directory
+```bash
+  cd the-eyed-traveller-front
+```
+Install dependencies
+```bash
+  npm install
+```
+Start the server
+```bash
+  npm run dev
+```
+
+## Technical requirements
+
+- PHP 8.1.6
+- Composer 2.3.10
+
+## Run tests
+
+To execute tests uncomment 2 lines of "phpunit.xml":
+```php
+    <server name="DB_CONNECTION" value="sqlite"/>
+    <server name="DB_DATABASE" value=":memory:"/>
+```
+        
+- vendor/bin/phpunit 
+- php artisan test
+
 ## Presentation:
 
 <ul>
