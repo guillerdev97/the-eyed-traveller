@@ -119,7 +119,7 @@ To execute tests uncomment 2 lines of "phpunit.xml":
 | <img src="https://github.com/Yelose/Yelose/blob/main/img/vscode.png"> <img src="https://github.com/Yelose/Yelose/blob/main/img/html.png"> <img src="https://github.com/Yelose/Yelose/blob/main/img/bootstrap.png">  <img src="https://github.com/Yelose/Yelose/blob/main/img/css.png"> <img src="https://github.com/Yelose/Yelose/blob/main/img/vue.png"> | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU3_893T2dAaGeZ6fb9y9rZxc9Cu-TnUKx0Q&usqp=CAU"> <img src="https://github.com/Yelose/Yelose/blob/main/img/php.png">  <img src="https://github.com/Yelose/Yelose/blob/main/img/mysql.png"> | <img src="https://github.com/Yelose/Yelose/blob/main/img/figma.png"> <img src="https://github.com/Yelose/Yelose/blob/main/img/jira.png"> <img src="https://github.com/Yelose/Yelose/blob/main/img/google.png">  |
 
 ## Documentation
-- [Click here to see the explanation and documentation of the project](https://www.figma.com/file/R3aFH6bPeETNHazU5k2zO4/Valnal%C3%B3n-User-Flow?node-id=0%3A1)
+- [Click here to see the explanation and documentation of the project](https://docs.google.com/document/d/1sP-c3P6gIKExmUr-jU6kb-p7Py0Wyx31cFFtpbM7NJM/edit?usp=sharing)
 
 ## Authors
 
