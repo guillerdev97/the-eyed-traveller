@@ -31,8 +31,4 @@ class Image extends Model
     public function category() {
         return $this->belongsTo(Category::class, 'category_id');
     }
-
-    public function city() {
-        return $this->belongsTo(City::class, 'city_id');
-    }
 }
