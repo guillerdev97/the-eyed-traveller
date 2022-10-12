@@ -9,17 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    public function list()
-    {
-        $imagesOfUser = User::getImagesOfUser();
+    // trending images 
+    public function trendingImages() {
+        $images = Image::orderBy('favs_quantity', 'DESC')
+        ->take(8)->get();
 
         return response()->json([
             'status' => 1,
-            'msg' => 'Favorite images',
-            'data' => $imagesOfUser
+            'msg' => 'Trending images',
+            'data' => $images
         ], 200);
-    }
+    } 
 
+    // add image of other user to your images
     public function add($id)
     {
         $image = Image::find($id); 
@@ -32,7 +34,6 @@ class FavoriteController extends Controller
             'status' => 1,
             'msg' => 'Favorite image',
             'data' => $image,
-            'quantity' => $image->favs_quantity
         ], 200);
     }
 
@@ -61,8 +62,5 @@ class FavoriteController extends Controller
         ], 200);
     }
 
-    public function trendingFoodImages() {
-        $categories = Category::all();
-        $foodImages = 
-    } 
+   
 }

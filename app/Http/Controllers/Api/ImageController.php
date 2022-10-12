@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Image;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    // list all images function
+    // list all images (filter frontend)
     public function listAllImages()
     {
-        $images = Image::all();
+        $images = Image::orderBy('favs_quantity', 'DESC')
+            ->get();
 
         return response()->json([
             'status' => 1,
@@ -20,21 +22,24 @@ class ImageController extends Controller
         ], 200);
     }
 
-    // list user images function
+    // list user images (duplicate values no)
     public function listUserImages()
     {
         $user = auth()->user();
 
-        $images = $user->images;
+        $myImages = $user->images;
+
+        $userImages = $user->image;
 
         return response()->json([
             'status' => 1,
-            'msg' => 'List of images',
-            'data' => $images
+            'msg' => 'List of user images',
+            'myImages' => $myImages,
+            'userImages' => $userImages,
         ], 200);
     }
 
-    // create function
+    // create image
     public function create(Request $request)
     {
         $user = auth()->user();
@@ -66,7 +71,7 @@ class ImageController extends Controller
         ], 200);
     }
 
-    // delete function
+    // delete image
     public function delete($id)
     {
         $user = auth()->user();
@@ -83,7 +88,7 @@ class ImageController extends Controller
         ], 200);
     }
 
-    // update function
+    // update image
     public function update(Request $request, $id)
     {
         $user = auth()->user();

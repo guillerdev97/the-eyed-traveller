@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 // images http requests
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/image/create', [ImageController::class, 'create']); // done
-    Route::get('/image/listall', [ImageController::class, 'listAllImages']); // done
+    Route::get('/image/list', [ImageController::class, 'listAllImages']); // done
     Route::get('/image/listuser', [ImageController::class, 'listUserImages']); // done
     Route::delete('/image/delete/{id}', [ImageController::class, 'delete']); // done
     Route::patch('/image/update/{id}', [ImageController::class, 'update']); // done
@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 // favorites http requests
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/image/favorite/list', [FavoriteController::class, 'list']); // done
+    Route::get('/image/favorite/trending', [FavoriteController::class, 'trendingImages']); // done
     Route::get('/image/favorite/add/{id}', [FavoriteController::class, 'add']); // done
     Route::get('/image/favorite/delete/{id}', [FavoriteController::class, 'delete']); // done
     Route::get('/image/favorite/quantity/{id}', [FavoriteController::class, 'favsQuantity']); // done
