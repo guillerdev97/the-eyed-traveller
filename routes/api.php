@@ -11,14 +11,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // authentication http requests
-Route::post('/register', [UserController::class, 'register']); 
-Route::post('/login', [UserController::class, 'login']); 
+Route::post('/register', [UserController::class, 'register'])->name('register'); 
+Route::post('/login', [UserController::class, 'login'])->name('login'); 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::delete('/user/delete/', [UserController::class, 'delete']); 
-    Route::patch('/user/update/{id}', [UserController::class, 'update']); 
-    Route::get('/user/profile', [UserController::class, 'profile']); 
-    Route::get('/logout', [UserController::class, 'logout']); 
+    Route::delete('/user/delete/', [UserController::class, 'delete'])->name('delete'); 
+    Route::patch('/user/update/{id}', [UserController::class, 'update'])->name('update');
+    Route::get('/user/profile', [UserController::class, 'profile'])->name('profile'); 
+    Route::get('/logout', [UserController::class, 'logout'])->name('logout'); 
 });
 
 // images http requests
