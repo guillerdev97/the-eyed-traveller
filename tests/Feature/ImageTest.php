@@ -15,16 +15,30 @@ class ImageTest extends TestCase
     use RefreshDatabase;
 
     // list images
-    public function test_if_no_auth_user__can__see_images_list()
+    public function test_if_no_auth_user__can__see_trending_images()
     {
         $this->withoutExceptionHandling();
 
         $user = User::factory()->create();
 
+        Category::factory()->create();
+
+        $image = Image::factory()->create([
+            'image' => 'url',
+            'title' => 'image title',
+            'favs_quantity' => 0,
+            'location' => 'url',
+            'category_id' => 1,
+            'user_id' => $user->id,
+            'city' => 'Mieres'
+        ]);
+
         $this->actingAs($user);
 
         $response = $this->get(route('listAll'));
         $response->assertStatus(200);
+
+        $this->assertCount(1, Image::all());
     }
 
     // list my images
@@ -36,10 +50,23 @@ class ImageTest extends TestCase
             $user = User::factory()->create([])
         );
 
+        Category::factory()->create();
+
+        $image = Image::factory()->create([
+            'image' => 'url',
+            'title' => 'image title',
+            'favs_quantity' => 0,
+            'location' => 'url',
+            'category_id' => 1,
+            'user_id' => $user->id,
+            'city' => 'Mieres'
+        ]);
+
         $this->actingAs($user);
 
         $response = $this->get(route('listMy'));
         $response->assertStatus(200);
+        $this->assertCount(1, Image::all());
     }
 
     // list fav
@@ -51,10 +78,27 @@ class ImageTest extends TestCase
             $user = User::factory()->create([])
         );
 
+        Sanctum::actingAs(
+            $user2 = User::factory()->create([])
+        );
+
+        Category::factory()->create();
+
+        $image = Image::factory()->create([
+            'image' => 'url',
+            'title' => 'image title',
+            'favs_quantity' => 0,
+            'location' => 'url',
+            'category_id' => 1,
+            'user_id' => $user2->id,
+            'city' => 'Mieres'
+        ]);
+
         $this->actingAs($user);
 
-        $response = $this->get(route('listFav'));
+        $response = $this->get(route('listMy'));
         $response->assertStatus(200);
+        $this->assertCount(1, Image::all());
     }
 
     // create image

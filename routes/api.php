@@ -33,7 +33,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 // favorites http requests
-Route::get('/image/favorite/trending', [FavoriteController::class, 'trendingImages']); 
+Route::get('/image/favorite/trending', [FavoriteController::class, 'trendingImages'])->name('trending'); 
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/image/favorite/add/{id}', [FavoriteController::class, 'add']); 
     Route::delete('/image/favorite/delete/{id}', [FavoriteController::class, 'delete']); 
