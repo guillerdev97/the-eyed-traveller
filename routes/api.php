@@ -22,14 +22,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 // images http requests
-Route::get('/image/list', [ImageController::class, 'listAllImages']); 
+Route::get('/image/list', [ImageController::class, 'listAllImages'])->name('listAll'); 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/image/create', [ImageController::class, 'create']); 
-    Route::get('/image/listmy', [ImageController::class, 'listMyImages']); 
-    Route::get('/image/listother', [ImageController::class, 'listFavImages']); 
-    Route::delete('/image/delete/{id}', [ImageController::class, 'delete']); 
-    Route::patch('/image/update/{id}', [ImageController::class, 'update']); 
+    Route::post('/image/create', [ImageController::class, 'create'])->name('createImage'); 
+    Route::get('/image/listmy', [ImageController::class, 'listMyImages'])->name('listMy'); 
+    Route::get('/image/listother', [ImageController::class, 'listFavImages'])->name('listFav'); 
+    Route::delete('/image/delete/{id}', [ImageController::class, 'delete'])->name('deleteImage'); 
+    Route::patch('/image/update/{id}', [ImageController::class, 'update'])->name('updateImage'); 
 });
 
 // favorites http requests
