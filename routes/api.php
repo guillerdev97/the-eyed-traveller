@@ -15,6 +15,9 @@ Route::post('/register', [UserController::class, 'register']); // done
 Route::post('/login', [UserController::class, 'login']); // done
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::delete('/user/delete/', [UserController::class, 'delete']); // done
+    Route::patch('/user/update/{id}', [UserController::class, 'update']); // done
+    Route::get('/user/profile', [UserController::class, 'profile']); // done
     Route::get('/logout', [UserController::class, 'logout']); // done
 });
 
@@ -32,4 +35,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/image/favorite/list', [FavoriteController::class, 'list']); // done
     Route::get('/image/favorite/add/{id}', [FavoriteController::class, 'add']); // done
     Route::get('/image/favorite/delete/{id}', [FavoriteController::class, 'delete']); // done
+    Route::get('/image/favorite/quantity/{id}', [FavoriteController::class, 'favsQuantity']); // done
 });

@@ -22,7 +22,7 @@ class FavoriteController extends Controller
 
     public function add($id)
     {
-        $image = Image::find($id);
+        $image = Image::find($id); 
 
         $user = User::find(Auth::id()); 
 
@@ -31,7 +31,8 @@ class FavoriteController extends Controller
         return response()->json([
             'status' => 1,
             'msg' => 'Favorite image',
-            'data' => $image
+            'data' => $image,
+            'quantity' => $image->favs_quantity
         ], 200);
     }
 
@@ -49,4 +50,19 @@ class FavoriteController extends Controller
             'data' => $image
         ], 200);
     }
+
+    public function favsQuantity($id) {
+        $favs_quantity = Image::getTotalUsersOfImage($id);
+
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Favorite image deleted',
+            'data' => $favs_quantity
+        ], 200);
+    }
+
+    public function trendingFoodImages() {
+        $categories = Category::all();
+        $foodImages = 
+    } 
 }

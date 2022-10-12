@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // register function
+    // register 
     public function register(Request $request)
     {
         $request->validate([
@@ -28,12 +29,12 @@ class UserController extends Controller
 
         return response()->json([
             'status' => 1,
-            'msg' => 'User created',
+            'msg' => 'User registered',
             'data' =>  $newUser
         ], 200);
     }
 
-    // login function
+    // login 
     public function login(Request $request)
     {
         $request->validate([
@@ -67,7 +68,7 @@ class UserController extends Controller
         ], 404);
     }
 
-    // logout function
+    // logout 
     public function logout()
     {
         $user = auth()->user();
@@ -78,6 +79,63 @@ class UserController extends Controller
             'status' => 1,
             'msg' => "User is logged out",
             'data' => $user,
+        ], 200);
+    }
+
+    // delete
+    public function delete()
+    {
+        $user = auth()->user();
+
+        $images = $user->images;
+
+        foreach($images as $image) {
+            $image->delete();
+        }
+
+        $user->delete();
+
+        auth()->user()->tokens()->delete();
+
+        return response()->json([
+            'status' => 1,
+            'msg' => "Deleted user",
+            'data' => $user,
+            'images' => $images
+        ], 200);
+    }
+
+    // update
+    public function update(Request $request, $id)
+    {
+        $user = auth()->user();
+
+        $userUpdated = User::all()
+            ->find($id);
+
+        $userUpdated->name = $request->name;
+        $userUpdated->email = $request->email;
+        $userUpdated->password = Hash::make($request->password);
+
+        $userUpdated->update();
+
+
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Student updated',
+            'data' => $userUpdated
+        ], 200);
+    }
+
+    // user profile
+    public function profile()
+    {
+        $user = auth()->user();
+
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Student updated',
+            'data' => $user
         ], 200);
     }
 }
